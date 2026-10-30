@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in - Spotify</title>
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./css/login.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <script src="login.js" defer></script>
+  </head>
+  <body>
+    <main class="login-page">
+      <!-- Logo Spotify -->
+      <a href="index.html" class="spotify-logo" title="Spotify">
+        <i class="fa-brands fa-spotify"></i>
+      </a>
+
+      <h1>Welcome back</h1>
+
+      <!-- Form đăng nhập -->
+      <form id="loginForm">
+        <label for="email">Email</label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="email"
+          required
+        />
+
+        <!-- Mật khẩu sẽ hiện sau khi nhập email -->
+        <div id="passwordStep" hidden>
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <p id="loginMessage" role="alert"></p>
+
+        <button type="submit" class="continue-button" id="continueButton">
+          Continue
+        </button>
+      </form>
+
+      <div class="separator">
+        <span>or</span>
+      </div>
+
+      <!-- Các phương thức đăng nhập khác -->
+      <div class="social-buttons">
+        <button type="button" class="social-button" data-provider="phone">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>Continue with phone number</span>
+        </button>
+
+        <button type="button" class="social-button" data-provider="google">
+          <span class="google-icon">G</span>
+          <span>Continue with Google</span>
+        </button>
+
+        <button type="button" class="social-button" data-provider="facebook">
+          <i class="fa-brands fa-facebook facebook-icon"></i>
+          <span>Continue with Facebook</span>
+        </button>
+
+        <button type="button" class="social-button" data-provider="apple">
+          <i class="fa-brands fa-apple"></i>
+          <span>Continue with Apple</span>
+        </button>
+      </div>
+
+      <div class="signup-prompt">
+        <p>Don't have an account?</p>
+        <a href="register.html">Sign up for Spotify</a>
+      </div>
+    </main>
+  </body>
+</html>

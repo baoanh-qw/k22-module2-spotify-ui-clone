@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    />
+
+    <!-- Font Awesome: dùng cho icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">
+        <a href="#" class="logo" id="logo" title="Spotify">
+          <i class="fa-brands fa-spotify"></i>
+        </a>
+        <button
+          class="home-btn tooltip-trigger"
+          id="home-btn"
+          type="button"
+          aria-label="Home"
+        >
+          <i class="fa-solid fa-house"></i>
+        </button>
+
+        <div class="search-box">
+          <!-- Icon kính lúp -->
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+          <!-- Ô nhập nội dung -->
+          <input
+            type="text"
+            class="search-input"
+            placeholder="What do you want to play?"
+          />
+
+          <!-- Đường kẻ ngăn cách -->
+          <span class="search-divider"></span>
+
+          <!-- Icon thư viện / duyệt nội dung -->
+          <button class="search-action" aria-label="Duyệt nội dung">
+            <i class="fa-solid fa-box-archive"></i>
+          </button>
+          <div id="search-dropdown" hidden>
+            <p id="search-status"></p>
+            <ul id="search-results"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="btn">
+          <button><a href="#">Explore Premium</a></button>
+          <button><a href="#">Support</a></button>
+          <button><a href="#">Download</a></button>
+        </div>
+
+        <span class="search-divider"></span>
+
+        <a href="#" class="install-app">
+          <i class="fa-solid fa-download"></i>&nbsp;Install App
+        </a>
+
+        <button class="header-icon" aria-label="Thông báo">
+          <i class="fa-solid fa-bell"></i>
+        </button>
+
+        <button class="header-icon" aria-label="Bạn bè">
+          <i class="fa-solid fa-user-group"></i>
+        </button>
+
+        <div id="user-info" hidden>
+          <button
+            id="profile-btn"
+            class="tooltip-trigger"
+            type="button"
+            aria-label="Account"
+          >
+            <img id="user-avatar" alt="Avatar" hidden />
+            <span id="avatar-letter">A</span>
+          </button>
+
+          <div id="profile-menu" hidden>
+            <p id="user-name"></p>
+            <p id="user-email"></p>
+            <button id="logout-btn" type="button">Log out</button>
+          </div>
+        </div>
+
+        <a href="register.html" class="btn-signup">Sign up</a>
+        <a href="./login.html" class="btn-login">Log in</a>
+      </div>
+    </header>
+
+    <!-- PHẦN THÂN -->
+    <div class="layout">
+      <aside class="sidebar-left">
+        <div class="main-container">
+          <div class="sidebar-left-head">
+            <p>Your Library</p>
+
+            <div class="btn-create">
+              <button
+                id="create-playlist-btn"
+                class="create tooltip-trigger"
+                type="button"
+                aria-label="Create playlist"
+              >
+                <i class="fa-solid fa-plus"></i>
+                Create
+              </button>
+            </div>
+          </div>
+
+          <!-- Công cụ thư viện -->
+          <div class="library-toolbar">
+            <button
+              id="sidebar-search-btn"
+              class="tooltip-trigger"
+              type="button"
+              aria-label="Search in Your Library"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <input
+              id="sidebar-search-input"
+              type="text"
+              placeholder="Search in Your Library"
+              hidden
+            />
+
+            <button id="library-view-btn" type="button" title="Change view">
+              <i class="fa-solid fa-list"></i>
+            </button>
+
+            <select id="library-sort" aria-label="Sort library">
+              <option value="recent">Recently Added</option>
+              <option value="alphabetical">Alphabetical</option>
+              <option value="creator">Creator</option>
+            </select>
+          </div>
+
+          <!-- Bộ lọc -->
+          <div class="sidebar-filters">
+            <button class="active" data-filter="all" type="button">All</button>
+            <button data-filter="playlists" type="button">Playlists</button>
+            <button data-filter="artists" type="button">Artists</button>
+            <button data-filter="albums" type="button">Albums</button>
+          </div>
+
+          <!-- Vùng nội dung có thể cuộn -->
+          <div class="content-left">
+            <!-- Danh sách playlist, album, nghệ sĩ từ API -->
+            <div id="library-list"></div>
+
+            <!-- Hiển thị khi thư viện trống -->
+            <div id="library-empty-state">
+              <div class="content-1">
+                <p class="p1">Create your first playlist</p>
+                <p class="p2">It's easy, we'll help you</p>
+                <button
+                  id="empty-create-playlist"
+                  class="tooltip-trigger"
+                  type="button"
+                  aria-label="Create playlist"
+                >
+                  Create playlist
+                </button>
+              </div>
+
+              <div class="content-2">
+                <p class="p3">Let's find some podcasts to follow</p>
+                <p class="p4">We'll keep you updated on new episodes</p>
+                <button type="button">Browse podcasts</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-sidebar">
+            <div class="list-sidebar">
+              <p>Legal</p>
+              <p>Safety &amp; Privacy Center</p>
+              <p>Privacy Policy</p>
+              <p>Cookies</p>
+              <p>About Ads</p>
+              <p>Accessibility</p>
+            </div>
+
+            <a href="#">Cookies</a>
+
+            <div>
+              <button class="btn-english" type="button">
+                <i class="fa-solid fa-globe"></i>
+                English
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <main>
+        <div class="main-content" id="home-view">
+          <!-- Khu vực Trending songs -->
+          <section class="music-section">
+            <div class="section-header">
+              <h2>Trending songs</h2>
+              <a href="#">Show all</a>
+            </div>
+
+            <div class="song-list" id="trending-song-list">
+              <!-- CARD 1 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d0000aa544bf6562e3f0c2703420bf896"
+                    alt="RHYDER"
+                  />
+                  <button class="play-btn" title="Play RHYDER">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Trong đôi mắt thiếu nữ</h3>
+                <p>RHYDER</p>
+              </div>
+
+              <!-- CARD 2 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d0000b2739a7d3f2568338aed138a4536"
+                    alt="Hoàng Thùy Linh"
+                  />
+                  <button class="play-btn" title="Play Hoàng Thùy Linh">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thầy dùi</h3>
+                <p>Hoàng Thùy Linh</p>
+              </div>
+
+              <!-- CARD 3 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d0000b2730f91ec9c611f121d2a16a9b3"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUrbane</p>
+              </div>
+
+              <!-- CARD 4 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d0000b273b530cdeee0fc5d2d2888e3c2"
+                    alt="NEON"
+                  />
+                  <button class="play-btn" title="Play NEON">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>NEON</h3>
+                <p>A20,A20 LITE</p>
+              </div>
+
+              <!-- CARD 5 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 6 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 7 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 8 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 9 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 10 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 11 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 12 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 13 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 14 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 15 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 16 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 17 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 18 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 19 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 20 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img src="images/thanhdo.jpg" alt="Thành Đô" />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Khu vực Popular artists -->
+
+          <section class="music-section">
+            <!-- Tiêu đề và nút Show all -->
+            <div class="section-header">
+              <h2>Popular Artists</h2>
+              <a href="#" class="show-all">Show all</a>
+            </div>
+
+            <div class="artist-list" id="popular-artist-list">
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Sơn Tùng M-TP"
+                  />
+
+                  <button class="play-btn" title="Play Sơn Tùng M-TP">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Sơn Tùng M-TP</h3>
+                <p>Artist</p>
+              </div>
+
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img
+                    src="https://static-images.vnncdn.net/vps_images/000001/000003/2026/2/9/hoa-minzy-1564.jpg?width=0&s=qRbyRKTCGDCK6wiKaRA97g"
+                  />
+                  <button class="play-btn" title="Play Hòa Minzy">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Hòa Minzy</h3>
+                <p>Artist</p>
+              </div>
+
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img
+                    src="https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/21/1231457/Phong-Cach-Thoi-Tran.jpg"
+                    alt="Mỹ Tâm"
+                  />
+                  <button class="play-btn" title="Play Mỹ Tâm">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Mỹ Tâm</h3>
+                <p>Artist</p>
+              </div>
+
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img
+                    src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/6/11/1055267/DSC07770.jpg"
+                    alt="Đen Vâu"
+                  />
+                  <button class="play-btn" title="Play Đen Vâu">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Đen Vâu</h3>
+                <p>Artist</p>
+              </div>
+
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img src="images/artist5.jpg" alt="Vũ" />
+                  <button class="play-btn" title="Play Vũ">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Vũ.</h3>
+                <p>Artist</p>
+              </div>
+
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img src="images/artist6.jpg" alt="Soobin" />
+                  <button class="play-btn" title="Play Soobin">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Soobin</h3>
+                <p>Artist</p>
+              </div>
+
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img src="images/artist7.jpg" alt="Jack" />
+                  <button class="play-btn" title="Play Jack">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Jack</h3>
+                <p>Artist</p>
+              </div>
+
+              <div class="artists-card">
+                <div class="artists-image">
+                  <img src="images/artist8.jpg" alt="Erik" />
+                  <button class="play-btn" title="Play Erik">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Erik</h3>
+                <p>Artist</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="music-section">
+            <div class="section-header">
+              <h2>Popular albums and singles</h2>
+              <a href="#">Show all</a>
+            </div>
+
+            <div class="song-list" id="popular-album-list">
+              <!-- CARD 1 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 2 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 3 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 4 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 5 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 6 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 7 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 8 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 9 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+
+              <!-- CARD 10 -->
+              <div class="song-card">
+                <div class="song-image">
+                  <img
+                    src="https://kenh14cdn.com/203336854389633024/2026/8/14/1o8b2sm40i1-5zlirggzt12-3to9fwlsdr3-232341-1786678438709-1786678439216834853659.jpg"
+                    alt="Thành Đô"
+                  />
+                  <button class="play-btn" title="Play Thành Đô">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <h3>Thành Đô</h3>
+                <p>GUr bane</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- PHẦN CHI TIẾT -->
+        <section id="playlist-detail-view" hidden>
+          <div id="playlist-detail-content"></div>
+        </section>
+      </main>
+      <aside class="sidebar-right">sidebar phải</aside>
+    </div>
+
+    <!-- Spotify Music Player -->
+    <footer id="spotify-player">
+      <!-- Bên trái: Ảnh bìa và thông tin bài hát -->
+      <div class="sp-left">
+        <img class="sp-cover" src="" alt="Ảnh bìa bài hát" />
+
+        <div class="sp-track-info">
+          <div class="sp-title">Chưa phát bài hát</div>
+          <div class="sp-artist"></div>
+        </div>
+
+        <button
+          class="sp-add"
+          type="button"
+          title="Add to Library"
+          aria-label="Add to Library"
+        >
+          <i class="fa-solid fa-circle-plus"></i>
+        </button>
+      </div>
+
+      <!-- Chính giữa: Điều khiển phát nhạc -->
+      <div class="sp-center">
+        <div class="sp-controls">
+          <button
+            class="sp-shuffle tooltip-trigger"
+            type="button"
+            aria-label="Shuffle"
+          >
+            <i class="fa-solid fa-shuffle"></i>
+          </button>
+
+          <button
+            class="sp-prev tooltip-trigger"
+            type="button"
+            aria-label="Previous"
+          >
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+
+          <button
+            class="sp-play tooltip-trigger"
+            type="button"
+            aria-label="Play"
+          >
+            <i class="fa-solid fa-play"></i>
+          </button>
+
+          <button
+            class="sp-next tooltip-trigger"
+            type="button"
+            aria-label="Next"
+          >
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+
+          <button
+            class="sp-repeat tooltip-trigger"
+            type="button"
+            aria-label="Repeat"
+          >
+            <i class="fa-solid fa-repeat"></i>
+          </button>
+        </div>
+
+        <!-- Thanh tiến trình -->
+        <div class="sp-progress">
+          <span class="sp-current-time">0:00</span>
+
+          <input
+            class="sp-seek"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+            aria-label="Playback progress"
+          />
+
+          <span class="sp-duration">0:00</span>
+        </div>
+      </div>
+
+      <!-- Bên phải: Tiện ích và âm lượng -->
+      <div class="sp-right">
+        <button type="button" title="Lyrics" aria-label="Lyrics">
+          <i class="fa-solid fa-microphone-lines"></i>
+        </button>
+
+        <button type="button" title="Queue" aria-label="Queue">
+          <i class="fa-solid fa-list"></i>
+        </button>
+
+        <button
+          type="button"
+          title="Connect to a device"
+          aria-label="Connect to a device"
+        >
+          <i class="fa-solid fa-computer"></i>
+        </button>
+
+        <button
+          class="sp-volume-icon tooltip-trigger"
+          type="button"
+          aria-label="Volume"
+        >
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <input
+          class="sp-volume"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.7"
+          aria-label="Volume"
+        />
+
+        <button type="button" title="Mini player" aria-label="Mini player">
+          <i class="fa-regular fa-window-restore"></i>
+        </button>
+
+        <button type="button" title="Full screen" aria-label="Full screen">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+      </div>
+    </footer>
+
+    <!-- <script src="./script.js"></script> -->
+    <script src="./header.js"></script>
+    <script src="./search.js"></script>
+    <script src="./sidebar.js"></script>
+    <script src="./trending.js"></script>
+    <script src="./artists.js"></script>
+    <script src="./albums.js"></script>
+    <script src="./player.js"></script>
+    <script src="./tooltip.js"></script>
+  </body>
+</html>

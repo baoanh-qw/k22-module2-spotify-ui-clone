@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký Spotify</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./css/register.css" />
+  </head>
+
+  <body>
+    <main class="register-container">
+      <h1>Đăng ký Spotify</h1>
+      <p>Tạo tài khoản để bắt đầu nghe nhạc.</p>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="username">Tên tài khoản</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Nhập username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Nhập email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="display-name">Tên hiển thị</label>
+          <input
+            type="text"
+            id="display-name"
+            placeholder="Nhập tên hiển thị"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Ít nhất 6 ký tự"
+            required
+          />
+        </div>
+
+        <p id="register-message" role="alert"></p>
+
+        <button type="submit" id="register-btn">Đăng ký</button>
+      </form>
+
+      <p>
+        Đã có tài khoản?
+        <a href="./login.html">Đăng nhập</a>
+      </p>
+    </main>
+
+    <script src="./register.js"></script>
+    <script src="./sidebar.js"></script>
+  </body>
+</html>

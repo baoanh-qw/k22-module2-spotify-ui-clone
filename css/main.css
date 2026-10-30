@@ -1,0 +1,3329 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #040404;
+}
+
+.header {
+  background-color: rgb(6, 6, 6);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 40px;
+  color: rgb(254, 249, 249);
+  margin-right: 20px;
+}
+
+.home-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background-color: #242424;
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.home-btn i {
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #333333;
+  color: white;
+}
+
+.home-btn:hover i {
+  transform: scale(1.1);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 450px;
+  height: 50px;
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  background-color: #242424;
+  border-radius: 999px;
+  gap: 14px;
+
+  transition: background-color 0.3s ease;
+}
+
+.search-box:hover {
+  background-color: #333333;
+}
+
+.search-icon {
+  color: rgb(130, 130, 130);
+  font-size: 25px;
+  flex-shrink: 0;
+
+  transition: color 0.3s ease;
+}
+
+.search-box:hover .search-icon {
+  color: white;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
+.search-input::placeholder {
+  color: #b3b3b3;
+}
+
+.search-divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgb(130, 130, 130);
+  flex-shrink: 0;
+}
+
+.search-action {
+  width: 34px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  color: rgb(130, 130, 130);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.search-action:hover {
+  color: #ffffff;
+}
+
+.search-action i {
+  font-size: 23px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn button {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.btn button a {
+  color: rgb(130, 130, 130);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.btn button a:hover {
+  color: white;
+}
+
+.header-right button:hover {
+  color: #ffffff;
+}
+
+.btn {
+  display: flex;
+  gap: 10px;
+}
+
+/* .btn-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+} */
+.btn button:hover {
+  color: rgb(255, 255, 255);
+}
+
+.install-app {
+  text-decoration: none;
+  color: rgb(130, 130, 130);
+  transition: color 0.5s ease;
+  font-weight: 700;
+}
+
+.install-app:hover {
+  color: white;
+}
+
+.btn-login {
+  background-color: white !important;
+  color: black !important;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.btn-login:hover {
+  background-color: #e5e5e5 !important;
+  color: black !important;
+}
+
+.btn-signup {
+  color: rgb(130, 130, 130);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.btn-signup:hover {
+  color: white;
+}
+
+#user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Avatar người dùng */
+#user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #b49ddb;
+  border: 2px solid #242424;
+}
+
+/* Tên người dùng */
+#user-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Ẩn khu vực tài khoản khi chưa đăng nhập */
+#user-info[hidden] {
+  display: none !important;
+}
+
+#logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  background-color: #ffffff;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Khi di chuột vào */
+#logout-btn:hover {
+  background-color: #e5e5e5;
+  transform: scale(1.04);
+}
+
+/* Khi nhấn nút */
+#logout-btn:active {
+  transform: scale(0.97);
+}
+
+/* Khi dùng bàn phím để chọn nút */
+#logout-btn:focus-visible {
+  outline: 2px solid #1ed760;
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* PHẦN THÂN */
+
+.layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sidebar-left {
+  width: 25%;
+  background-color: rgb(24, 24, 24);
+  border-radius: 10px;
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  bottom: 10px;
+  overflow: hidden;
+}
+
+.sidebar-left .main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sidebar-left-head,
+.library-toolbar,
+.sidebar-filters,
+.footer-sidebar {
+  flex-shrink: 0;
+}
+
+.sidebar-left-head {
+  display: flex;
+  margin: 10px 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-left-head p {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.create {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #2b2a2a;
+  border-radius: 20px;
+  padding: 8px 12px;
+  background-color: #2b2a2a;
+}
+
+.create i {
+  color: white;
+}
+
+.fa-plus {
+  font-size: 20px;
+}
+
+.content-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 0;
+}
+
+/* Chrome, Edge, Safari */
+.content-left::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-left::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.content-left::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Di chuột vào vùng cuộn thì hiện thanh xám */
+.content-left:hover::-webkit-scrollbar-thumb {
+  background: #585757;
+}
+
+/* Ẩn mũi tên */
+.content-left::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* CONTENT 1 */
+
+.content-1 {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px;
+  padding: 20px 15px;
+  background-color: #313131;
+  border-radius: 10px;
+}
+.content-1 .p1 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.content-1 .p2 {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.content-1 button {
+  font-size: 14px;
+  padding: 6px 12px;
+  width: fit-content;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* CONTENT 2 */
+
+.content-2 {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px;
+  padding: 20px 15px;
+  background-color: #313131;
+  border-radius: 10px;
+}
+.content-2 .p3 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.content-2 .p4 {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.content-2 button {
+  font-size: 14px;
+  padding: 6px 12px;
+  width: fit-content;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.footer-sidebar {
+  color: #b3b3b3;
+  margin: 30px;
+}
+
+.list-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px 20px;
+  margin-bottom: 10px;
+}
+
+.list-sidebar p {
+  font-size: 12px;
+  transition: color 0 5s ease;
+}
+
+.list-sidebar p:hover {
+  color: #ffffff;
+}
+
+.footer-sidebar a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.footer-sidebar a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+  /* độ dày của nét line */
+  text-decoration-thickness: 2px;
+  /* khoảng cách giữa chữ và đường line */
+  text-underline-offset: 2px;
+}
+
+.btn-english {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #343333;
+  border-radius: 20px;
+  padding: 8px 14px;
+  background-color: rgb(24, 24, 24);
+  margin-top: 40px;
+  margin-bottom: 50px;
+  font-weight: 600;
+}
+
+/* PHẦN MAIN */
+
+main {
+  width: calc(75% - 30px);
+  margin-left: calc(25% + 20px);
+  background-color: rgb(24, 24, 24);
+  border-radius: 5px;
+  margin-top: 70px;
+  min-width: 0;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Chrome, Edge, Safari */
+main::-webkit-scrollbar {
+  width: 8px;
+}
+
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Di chuột vào vùng cuộn thì hiện thanh xám */
+main:hover::-webkit-scrollbar-thumb {
+  background: #585757;
+}
+
+/* Ẩn mũi tên */
+main::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Toàn bộ nội dung: xếp các khu vực theo chiều dọc */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  padding: 25px 30px;
+  background-color: #121212;
+  border-radius: 15px;
+}
+
+/* Mỗi khu vực nhạc */
+.music-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Tiêu đề và nút Show all nằm ngang */
+.section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 25px;
+}
+
+.section-header h2:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  /* khoảng cách giữa chữ và đường line */
+  text-underline-offset: 2px;
+}
+
+.section-header a {
+  color: #b3b3b3;
+  text-decoration: none;
+}
+
+.section-header a:hover {
+  color: white;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  /* khoảng cách giữa chữ và đường line */
+  text-underline-offset: 2px;
+}
+
+.song-card h3:hover,
+.song-card p:hover {
+  color: white;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  /* khoảng cách giữa chữ và đường line */
+  text-underline-offset: 2px;
+}
+
+.list-sidebar p:hover {
+  color: #ffffff;
+}
+
+/* Danh sách bài hát nằm ngang */
+.song-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 5px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  padding-bottom: 10px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari, Edge */
+.song-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Kích thước cố định cho từng card */
+
+.song-card {
+  flex: 0 0 200px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 12px;
+  border-radius: 8px;
+  background-color: transparent;
+
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Nền sáng nhẹ khi hover */
+.song-card:hover {
+  background-color: #1e1e1e;
+}
+
+/* Khung ảnh */
+.song-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.song-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Nút Play */
+.play-btn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+
+  background-color: #1ed760;
+  color: black;
+  font-size: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.2s ease;
+
+  cursor: pointer;
+}
+
+/* Hiện nút Play khi hover vào card */
+.song-card:hover .play-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Nút sáng hơn khi hover trực tiếp */
+.play-btn:hover {
+  background-color: #3be477;
+  transform: scale(1.06);
+}
+
+.song-card h3 {
+  margin: 0;
+  color: white;
+  font-size: 18px;
+}
+
+.song-card p {
+  margin: 0;
+  color: #b3b3b3;
+  font-size: 16px;
+}
+
+#popular-album-list .album-list-message {
+  flex: 0 0 100%;
+  margin: 8px 12px;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+/* Danh sách nghệ sĩ nằm ngang */
+
+.music-section {
+  width: 100%;
+  min-width: 0;
+}
+
+/* 8 card nằm ngang, không xuống dòng */
+.artist-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  padding: 3px;
+}
+
+.artist-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card nghệ sĩ */
+.artists-card {
+  flex: 0 0 200px;
+  min-width: 0;
+
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+
+  color: white;
+
+  transition: background-color 0.2s ease;
+}
+
+.artists-card:hover {
+  background-color: #292929;
+}
+
+.artists-card h3:hover,
+.artists-card p:hover {
+  color: white;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  /* khoảng cách giữa chữ và đường line */
+  text-underline-offset: 2px;
+}
+
+/* Khung ảnh */
+.artists-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  position: relative;
+  margin-bottom: 12px;
+}
+
+/* Ảnh hình tròn */
+.artists-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+
+  display: block;
+}
+
+/* Nút Play */
+.play-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+
+  width: 60px;
+  height: 60px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #1ed760;
+  color: black;
+  font-size: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(8px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Rê chuột vào card mới hiện nút */
+.artists-card:hover .play-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.play-btn:hover {
+  background-color: #3be477;
+  transform: scale(1.05);
+}
+
+/* Tên nghệ sĩ */
+.artists-card h3 {
+  font-size: 18px;
+  font-weight: 500;
+
+  margin: 0 0 8px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mô tả */
+.artists-card p {
+  color: #b3b3b3;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Thiết bị cảm ứng: luôn hiện nút Play */
+@media (hover: none) {
+  .play-btn {
+    opacity: 1;
+    transform: none;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ĐĂNG NHẬP */
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: #242424;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* demo giao diện header mới khi đã đăng nhập */
+
+/* ===== Header sau khi đăng nhập ===== */
+.header.logged-in {
+  height: 70px;
+  padding: 0 12px 0 34px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo nằm bên trái */
+.header.logged-in .header-left {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+/* Căn Home theo toàn bộ màn hình */
+.header.logged-in .home-btn {
+  position: absolute;
+  left: calc(55% - 300px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #242424;
+  color: #b3b3b3;
+}
+
+/* Thanh tìm kiếm ở giữa */
+.header.logged-in .search-box {
+  position: absolute;
+  left: calc(50% + 37px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  max-width: 40vw;
+  height: 50px;
+  border-radius: 999px;
+  background: #242424;
+}
+
+/* Khu vực bên phải */
+.header.logged-in .header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+
+/* Ẩn Support và Download trong cụm nút Premium */
+.header.logged-in .btn button:nth-child(n + 2) {
+  display: none;
+}
+
+/* Nút Explore Premium */
+.header.logged-in .btn button a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header.logged-in .btn button a:hover {
+  color: #000;
+  transform: scale(1.04);
+}
+
+/* Install App */
+.header.logged-in .install-app {
+  color: #b3b3b3;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Chuông và bạn bè */
+.header.logged-in .header-icon {
+  width: 32px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.header.logged-in .header-icon:hover {
+  color: #fff;
+}
+
+/* Chỉ ẩn Login / Sign up khi đã đăng nhập */
+.header.logged-in .btn-login,
+.header.logged-in .btn-signup {
+  display: none !important;
+}
+
+/* Avatar */
+.header.logged-in #user-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.header.logged-in #user-info[hidden] {
+  display: none !important;
+}
+
+.header.logged-in #profile-btn {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  border: 7px solid #242424;
+  border-radius: 50%;
+  background: #b49ddb;
+  color: #171717;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.header.logged-in #user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Giữ menu tài khoản phía dưới avatar */
+.header.logged-in #profile-menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  z-index: 1001;
+  width: 200px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #282828;
+  color: white;
+  box-shadow: 0 4px 16px #0008;
+}
+
+.header.logged-in #profile-menu[hidden] {
+  display: none !important;
+}
+
+/* Ẩn icon chuông và bạn bè khi chưa đăng nhập */
+.header:not(.logged-in) .header-icon {
+  display: none !important;
+}
+
+/* Chỉ hiện icon khi đã đăng nhập */
+.header.logged-in .header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* phần gợi ý tìm kiếm */
+
+.search-box {
+  position: relative;
+}
+
+#search-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #282828;
+  border-radius: 8px;
+  color: white;
+  z-index: 1100;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+#search-dropdown[hidden] {
+  display: none !important;
+}
+
+#search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#search-results li {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#search-results li:hover {
+  background: #3e3e3e;
+}
+
+#search-status {
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+/* Chrome, Edge, Safari */
+#search-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+#search-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#search-dropdown::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Di chuột vào danh sách gợi ý thì hiện thanh cuộn màu xám */
+#search-dropdown:hover::-webkit-scrollbar-thumb {
+  background: #585757;
+}
+
+/* ===== SIDEBAR LIBRARY TOOLBAR ===== */
+
+.library-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 15px;
+}
+
+.library-toolbar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 8px;
+  color: #b3b3b3;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.library-toolbar button:hover {
+  color: #ffffff;
+  background-color: #2b2a2a;
+}
+
+.library-toolbar input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  color: #ffffff;
+  background-color: #2b2a2a;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.library-toolbar input::placeholder {
+  color: #b3b3b3;
+}
+
+.library-toolbar select {
+  max-width: 135px;
+  min-width: 0;
+  padding: 8px 4px;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.library-toolbar select option {
+  color: #ffffff;
+  background-color: #242424;
+}
+
+/* ===== FILTER BUTTONS ===== */
+
+.sidebar-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 15px;
+}
+
+.sidebar-filters button {
+  padding: 8px 12px;
+  color: #ffffff;
+  background-color: #2b2a2a;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.sidebar-filters button:hover {
+  background-color: #3a3a3a;
+}
+
+.sidebar-filters button.active {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* ===== LIBRARY ITEMS ===== */
+
+#library-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 8px;
+}
+
+.library-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.library-item:hover {
+  background-color: #2b2a2a;
+}
+
+.library-item img {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: #333333;
+}
+
+.library-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.library-item-info p {
+  overflow: hidden;
+  margin: 0 0 5px;
+  color: #ffffff;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.library-item-info span {
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+/* ===== EMPTY STATE ===== */
+
+#library-empty-state[hidden],
+#sidebar-search-input[hidden] {
+  display: none;
+}
+
+#library-list:empty {
+  margin: 0;
+}
+
+/* Sidebar library layouts */
+#library-list.compact-list .library-item {
+  gap: 8px;
+  padding: 6px 8px;
+}
+
+#library-list.compact-list .library-item img {
+  display: none;
+}
+
+#library-list.compact-list .library-item-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+#library-list.compact-list .library-item-info p {
+  margin: 0;
+}
+
+#library-list.compact-list .library-owner {
+  display: none;
+}
+
+#library-list .library-item[data-type="Artist"] .library-owner {
+  display: none;
+}
+
+#library-list.compact-grid,
+#library-list.default-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 8px;
+}
+
+#library-list.compact-grid .library-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  padding: 0;
+  overflow: hidden;
+}
+
+#library-list.compact-grid .library-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+#library-list.compact-grid .library-item-info {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 28px 8px 8px;
+  background: linear-gradient(transparent, rgb(0 0 0 / 85%));
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+#library-list.compact-grid .library-item:hover .library-item-info,
+#library-list.compact-grid .library-item:focus-within .library-item-info {
+  opacity: 1;
+}
+
+#library-list.compact-grid .library-item-info p {
+  margin: 0 0 4px;
+}
+
+#library-list.compact-grid .library-item-info span {
+  display: inline;
+  color: #e0e0e0;
+}
+
+#library-list.default-grid .library-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px;
+}
+
+#library-list.default-grid .library-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 4px;
+}
+
+#library-list.default-grid .library-item-info p {
+  margin-bottom: 5px;
+}
+
+#library-list.default-grid .library-item-info span {
+  display: inline;
+}
+
+#library-list .library-empty-message {
+  grid-column: 1 / -1;
+  margin: 8px;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+/* ===== HỘP THOẠI TẠO PLAYLIST ===== */
+.playlist-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.playlist-modal-overlay[hidden] {
+  display: none;
+}
+
+.playlist-modal {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: 12px;
+  background: #242424;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.playlist-modal h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.playlist-modal-description {
+  margin-bottom: 22px;
+  color: #b3b3b3;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.playlist-modal label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.playlist-modal input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #727272;
+  border-radius: 4px;
+  outline: none;
+  background: #121212;
+  color: #fff;
+  font-size: 15px;
+}
+
+.playlist-modal input:focus {
+  border-color: #fff;
+}
+
+.playlist-modal-error {
+  min-height: 20px;
+  margin-top: 8px;
+  color: #ff7777;
+  font-size: 13px;
+}
+
+.playlist-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.playlist-modal-actions button {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 24px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.playlist-modal-cancel {
+  background: transparent;
+  color: #fff;
+}
+
+.playlist-modal-cancel:hover {
+  transform: scale(1.04);
+}
+
+.playlist-modal-submit {
+  background: #1ed760;
+  color: #000;
+}
+
+.playlist-modal-submit:hover {
+  background: #3be477;
+  transform: scale(1.03);
+}
+
+.playlist-modal-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+/* =========================================
+   PLAYLIST DETAIL - SPOTIFY STYLE
+   Chỉ áp dụng cho khu vực chi tiết playlist
+========================================= */
+
+#playlist-detail-view {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  color: #fff;
+  background: #121212;
+  border-radius: 0;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+main:has(#playlist-detail-view:not([hidden])) {
+  margin-top: 60px;
+  height: calc(100vh - 70px);
+  border-radius: 0;
+}
+
+#playlist-detail-view [hidden] {
+  display: none !important;
+}
+
+#playlist-detail-content {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  padding: 0 0 48px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #121212;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+/* =========================================
+   1. HEADER PLAYLIST
+========================================= */
+
+#playlist-detail-view .playlist-detail-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+  width: 100%;
+  min-height: 345px;
+  padding: 25px 30px 30px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #565656 0%, #414141 45%, #282828 100%);
+}
+
+/* Hỗ trợ cả cấu trúc ảnh bìa trực tiếp và ảnh bìa có khung */
+
+#playlist-detail-view .playlist-detail-cover-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 290px;
+  width: 290px;
+  height: 290px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #242424;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+#playlist-detail-view .playlist-detail-cover {
+  display: block;
+  width: 232px;
+  height: 232px;
+  flex: 0 0 232px;
+  object-fit: cover;
+  background: #282828;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Nếu ảnh nằm trong khung thì phủ kín khung */
+
+#playlist-detail-view .playlist-detail-cover-wrap .playlist-detail-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  flex: none;
+}
+
+#playlist-detail-view .playlist-cover-placeholder {
+  color: #858585;
+  font-size: 90px;
+  line-height: 1;
+}
+
+#playlist-detail-view .playlist-detail-heading {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 5px;
+}
+
+#playlist-detail-view .playlist-visibility {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#playlist-detail-view .playlist-detail-heading h1,
+#playlist-detail-view .playlist-detail-name {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -1.8px;
+  overflow-wrap: anywhere;
+}
+
+#playlist-detail-view .playlist-owner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#playlist-detail-view .playlist-owner-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+  background: #454545;
+  color: #fff;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+/* =========================================
+   2. THANH CÔNG CỤ
+   Trái: cộng tác + ba chấm
+   Phải: Danh sách
+========================================= */
+
+#playlist-detail-view .playlist-detail-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  min-height: 105px;
+  padding: 25px 30px;
+  margin: 0;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #242424 0%, #181818 100%);
+}
+
+#playlist-detail-view .playlist-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+#playlist-detail-view .playlist-detail-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #b3b3b3;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#playlist-detail-view .playlist-detail-toolbar button:hover {
+  color: #fff;
+  background: transparent;
+}
+
+#playlist-detail-view .playlist-collaborator-button {
+  font-size: 28px !important;
+  line-height: 1;
+}
+
+#playlist-detail-view .playlist-more-button {
+  font-size: 22px !important;
+  letter-spacing: 3px;
+}
+
+#playlist-detail-view .playlist-list-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  color: #fff !important;
+  font-size: 14px !important;
+}
+
+/* =========================================
+   3. HÀNG NÚT THÊM VÀ CHỈNH SỬA
+========================================= */
+
+#playlist-detail-view .playlist-action-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  padding: 0 30px 35px;
+  box-sizing: border-box;
+  background: #191919;
+}
+
+#playlist-detail-view .playlist-action-row button,
+#playlist-detail-view .playlist-add-button,
+#playlist-detail-view .playlist-edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 41px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background: #303030;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#playlist-detail-view .playlist-action-row button:hover {
+  background: #414141;
+}
+
+#playlist-detail-view .playlist-action-row button span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* =========================================
+   4. PLAYLIST TRỐNG - TÌM BÀI HÁT
+========================================= */
+
+#playlist-detail-view .playlist-empty-state {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 29px 30px 25px;
+  border-top: 1px solid #343434;
+  background: #121212;
+  box-sizing: border-box;
+}
+
+#playlist-detail-view .playlist-empty-state h2 {
+  margin: 0 45px 20px 0;
+  color: #fff;
+  font-size: clamp(22px, 2.1vw, 30px);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+}
+
+/* Ô tìm kiếm */
+
+#playlist-detail-view .playlist-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(746px, 100%);
+  height: 50px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: #292929;
+  box-sizing: border-box;
+  color: #b3b3b3;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+#playlist-detail-view .playlist-search:hover {
+  background: #333;
+}
+
+#playlist-detail-view .playlist-search:focus-within {
+  border-color: #b3b3b3;
+  background: #292929;
+}
+
+#playlist-detail-view .playlist-search > span {
+  flex: 0 0 auto;
+  font-size: 26px;
+  line-height: 1;
+}
+
+#playlist-detail-view .playlist-search input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#playlist-detail-view .playlist-search input::placeholder {
+  color: #b3b3b3;
+  opacity: 1;
+}
+
+/* Nút đóng tìm kiếm */
+
+#playlist-detail-view .playlist-empty-close {
+  position: absolute;
+  top: 58px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#playlist-detail-view .playlist-empty-close:hover {
+  color: #fff;
+}
+
+#playlist-detail-view .playlist-search-results {
+  margin-top: 16px;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+/* =========================================
+   5. DANH SÁCH BÀI HÁT
+   Chỉ hiện khi có dữ liệu hoặc được mở
+========================================= */
+
+#playlist-detail-view .playlist-detail-tracks {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0 30px 35px;
+  border-top: 1px solid #343434;
+  background: #121212;
+  box-sizing: border-box;
+}
+
+#playlist-detail-view .playlist-detail-tracks[hidden] {
+  display: none !important;
+}
+
+#playlist-detail-view .playlist-track-header,
+#playlist-detail-view .playlist-track-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 2fr) minmax(100px, 1fr);
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 10px 12px;
+  box-sizing: border-box;
+}
+
+#playlist-detail-view .playlist-track-header {
+  min-height: 42px;
+  border-bottom: 1px solid #343434;
+  color: #b3b3b3;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+#playlist-detail-view .playlist-track-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  min-height: 64px;
+  border-radius: 4px;
+  color: #b3b3b3;
+  font-size: 14px;
+  transition: background 0.15s ease;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#playlist-detail-view .playlist-track-row:hover {
+  background: #ffffff12;
+}
+#playlist-detail-view .playlist-track-info {
+  display: flex;
+  align-items: center;
+  flex: 1 1 40%;
+  min-width: 0;
+}
+
+#playlist-detail-view .playlist-track-album {
+  flex: 1 1 30%;
+  min-width: 0;
+}
+
+#playlist-detail-view .playlist-track-duration {
+  flex: 0 0 60px;
+  text-align: right;
+  margin-left: auto;
+}
+
+#playlist-detail-view .playlist-track-title {
+  min-width: 0;
+  overflow: hidden;
+  color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#playlist-detail-view .playlist-detail-message {
+  padding: 20px 12px;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+/* =========================================
+   6. RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  #playlist-detail-view .playlist-detail-header {
+    gap: 20px;
+    min-height: 260px;
+    padding: 28px 22px 22px;
+  }
+
+  #playlist-detail-view .playlist-detail-cover-wrap {
+    flex-basis: 210px;
+    width: 210px;
+    height: 210px;
+  }
+
+  #playlist-detail-view .playlist-detail-cover {
+    width: 180px;
+    height: 180px;
+    flex-basis: 180px;
+  }
+
+  #playlist-detail-view .playlist-detail-cover-wrap .playlist-detail-cover {
+    width: 100%;
+    height: 100%;
+    flex: none;
+  }
+
+  #playlist-detail-view .playlist-detail-heading h1,
+  #playlist-detail-view .playlist-detail-name {
+    font-size: clamp(34px, 5vw, 58px);
+    letter-spacing: -1px;
+  }
+
+  #playlist-detail-view .playlist-detail-toolbar {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  #playlist-detail-view .playlist-action-row {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  #playlist-detail-view .playlist-empty-state {
+    padding: 24px 22px;
+  }
+
+  #playlist-detail-view .playlist-detail-tracks {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  #playlist-detail-view .playlist-empty-close {
+    right: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  #playlist-detail-view .playlist-detail-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    min-height: auto;
+    padding: 24px 20px 28px;
+  }
+
+  #playlist-detail-view .playlist-detail-cover-wrap {
+    flex-basis: 160px;
+    width: 160px;
+    height: 160px;
+  }
+
+  #playlist-detail-view .playlist-detail-cover {
+    width: 160px;
+    height: 160px;
+    flex-basis: 160px;
+  }
+
+  #playlist-detail-view .playlist-detail-cover-wrap .playlist-detail-cover {
+    width: 100%;
+    height: 100%;
+    flex: none;
+  }
+
+  #playlist-detail-view .playlist-cover-placeholder {
+    font-size: 60px;
+  }
+
+  #playlist-detail-view .playlist-detail-heading h1,
+  #playlist-detail-view .playlist-detail-name {
+    margin-bottom: 16px;
+    font-size: 34px;
+    letter-spacing: -0.5px;
+  }
+
+  #playlist-detail-view .playlist-detail-toolbar {
+    gap: 12px;
+    min-height: 84px;
+    padding: 16px 20px;
+  }
+
+  #playlist-detail-view .playlist-toolbar-left {
+    gap: 14px;
+  }
+
+  #playlist-detail-view .playlist-action-row {
+    gap: 8px;
+    padding: 0 20px 25px;
+  }
+
+  #playlist-detail-view .playlist-action-row button {
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  #playlist-detail-view .playlist-empty-state {
+    padding: 24px 20px;
+  }
+
+  #playlist-detail-view .playlist-empty-state h2 {
+    margin-right: 30px;
+    font-size: 22px;
+  }
+
+  #playlist-detail-view .playlist-search {
+    width: 100%;
+  }
+
+  #playlist-detail-view .playlist-empty-close {
+    top: 18px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 30px;
+  }
+
+  #playlist-detail-view .playlist-detail-tracks {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  #playlist-detail-view .playlist-track-header,
+  #playlist-detail-view .playlist-track-row {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 10px;
+  }
+}
+
+/* chi tiết phần playlist */
+
+/* =========================================
+   SPOTIFY CLONE - PLAYLIST DETAIL
+========================================= */
+
+#playlist-detail-content *,
+#playlist-detail-content *::before,
+#playlist-detail-content *::after {
+  box-sizing: border-box;
+}
+
+#playlist-detail-content button,
+#playlist-detail-content input {
+  font: inherit;
+}
+
+#playlist-detail-content button {
+  cursor: pointer;
+}
+
+/* HEADER */
+
+#playlist-detail-content .playlist-detail-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  width: 100%;
+  min-width: 0;
+  min-height: 320px;
+  margin: 0;
+  padding: 32px;
+  box-sizing: border-box;
+  background: linear-gradient(
+    180deg,
+    #565656 0%,
+    #474747 28%,
+    #363636 62%,
+    #282828 100%
+  );
+}
+
+#playlist-detail-content .playlist-detail-cover-wrap {
+  position: relative;
+  flex: 0 0 232px;
+  width: 232px;
+  height: 232px;
+  overflow: hidden;
+  background: #242424;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
+}
+
+#playlist-detail-content .playlist-detail-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#playlist-detail-content .playlist-cover-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #858585;
+  font-size: 80px;
+  font-weight: 700;
+}
+
+#playlist-detail-content .playlist-detail-cover[hidden],
+#playlist-detail-content .playlist-cover-placeholder[hidden] {
+  display: none;
+}
+
+#playlist-detail-content .playlist-detail-heading {
+  flex: 1;
+  min-width: 0;
+}
+
+#playlist-detail-content .playlist-visibility {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#playlist-detail-content .playlist-detail-name {
+  margin: 0 0 20px;
+  overflow-wrap: anywhere;
+  color: #fff;
+  font-size: clamp(32px, 5vw, 76px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+#playlist-detail-content .playlist-owner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#playlist-detail-content .playlist-owner-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #333;
+  color: #fff;
+}
+
+/* TOOLBAR */
+
+#playlist-detail-content .playlist-collaborator-button,
+#playlist-detail-content .playlist-more-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 22px;
+  transition:
+    color 0.2s,
+    transform 0.2s;
+}
+
+#playlist-detail-content .playlist-collaborator-button:hover,
+#playlist-detail-content .playlist-more-button:hover {
+  color: #fff;
+  transform: scale(1.06);
+}
+
+#playlist-detail-content .playlist-list-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0 8px 8px;
+  border: 0;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#playlist-detail-content .playlist-list-button:hover {
+  color: #fff;
+}
+
+/* ACTION BUTTONS */
+
+#playlist-detail-content .playlist-action-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 0 32px 24px;
+  box-sizing: border-box;
+  background: #181818;
+  border: none;
+  box-shadow: none;
+}
+
+#playlist-detail-content .playlist-add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 24px;
+  background: #303030;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+#playlist-detail-content .playlist-add-button:hover {
+  background: #414141;
+  transform: scale(1.03);
+}
+
+#playlist-detail-content .playlist-add-button span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+#playlist-detail-content .playlist-edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 22px;
+  background: #303030;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+#playlist-detail-content .playlist-edit-button:hover {
+  border-color: transparent;
+  background: #414141;
+}
+
+/* SEARCH PANEL */
+
+#playlist-detail-content .playlist-empty-state {
+  position: relative;
+  margin: 0 0 28px;
+  padding: 24px;
+  border-radius: 8px;
+  background: #121212;
+}
+
+#playlist-detail-content .playlist-empty-state[hidden] {
+  display: none;
+}
+
+#playlist-detail-content .playlist-empty-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 26px;
+}
+
+#playlist-detail-content .playlist-empty-close:hover {
+  background: #333;
+  color: #fff;
+}
+
+#playlist-detail-content .playlist-empty-state h2 {
+  margin: 0 40px 20px 0;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+#playlist-detail-content .playlist-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 420px);
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: #292929;
+  color: #b3b3b3;
+}
+
+#playlist-detail-content .playlist-search:focus-within {
+  outline: 2px solid #fff;
+}
+
+#playlist-detail-content .playlist-search > span {
+  font-size: 24px;
+}
+
+#playlist-detail-content .playlist-search-input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+}
+
+#playlist-detail-content .playlist-search-input::placeholder {
+  color: #b3b3b3;
+}
+
+#playlist-detail-content .playlist-search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+/* SEARCH RESULT */
+
+#playlist-detail-content .playlist-search-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+#playlist-detail-content .playlist-search-result:hover {
+  background: #292929;
+}
+
+#playlist-detail-content .playlist-search-result .playlist-track-info {
+  flex: 1;
+  min-width: 0;
+}
+
+#playlist-detail-content .playlist-add-track-button {
+  flex-shrink: 0;
+  min-width: 72px;
+  padding: 7px 14px;
+  border: 1px solid #727272;
+  border-radius: 18px;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#playlist-detail-content .playlist-add-track-button:hover:not(:disabled) {
+  border-color: #fff;
+  transform: scale(1.03);
+}
+
+#playlist-detail-content .playlist-add-track-button:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+/* TRACK TABLE */
+
+#playlist-detail-content .playlist-detail-tracks {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0 32px;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+#playlist-detail-content .playlist-detail-tracks[hidden] {
+  display: none;
+}
+
+#playlist-detail-content .playlist-track-header {
+  display: grid;
+  grid-template-columns: 36px minmax(180px, 2fr) minmax(100px, 1fr) 80px;
+  align-items: center;
+  gap: 16px;
+}
+
+#playlist-detail-content .playlist-track-row {
+  display: grid;
+  grid-template-columns: 36px minmax(180px, 2fr) minmax(100px, 1fr) 80px 40px;
+  align-items: center;
+  gap: 16px;
+}
+
+#playlist-detail-content .playlist-track-header {
+  min-height: 38px;
+  padding: 0 12px;
+  border-bottom: 1px solid #333;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+#playlist-detail-content .playlist-track-row {
+  min-height: 64px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #b3b3b3;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+#playlist-detail-content .playlist-track-row:hover {
+  background: #ffffff12;
+}
+
+#playlist-detail-content .playlist-track-row:hover .playlist-track-title {
+  color: #fff;
+}
+
+#playlist-detail-content .playlist-track-number {
+  text-align: center;
+  color: #b3b3b3;
+}
+
+#playlist-detail-content .playlist-track-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+#playlist-detail-content .playlist-track-image {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  object-fit: cover;
+  background: #282828;
+}
+
+#playlist-detail-content .playlist-track-text {
+  min-width: 0;
+}
+
+#playlist-detail-content .playlist-track-title {
+  overflow: hidden;
+  margin: 0 0 5px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#playlist-detail-content .playlist-track-artist {
+  overflow: hidden;
+  color: #b3b3b3;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#playlist-detail-content .playlist-track-album {
+  overflow: hidden;
+  color: #b3b3b3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#playlist-detail-content .playlist-track-duration {
+  text-align: right;
+  color: #b3b3b3;
+  font-variant-numeric: tabular-nums;
+}
+
+#playlist-detail-content .playlist-detail-message {
+  margin: 18px 12px;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  #playlist-detail-content {
+    padding: 20px 16px 32px;
+  }
+
+  #playlist-detail-content .playlist-detail-header {
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  #playlist-detail-content .playlist-detail-cover-wrap {
+    flex-basis: auto;
+    width: min(65vw, 232px);
+    height: min(65vw, 232px);
+  }
+
+  #playlist-detail-content .playlist-detail-name {
+    font-size: clamp(28px, 8vw, 48px);
+    letter-spacing: -1px;
+  }
+
+  #playlist-detail-content .playlist-owner {
+    justify-content: center;
+  }
+
+  #playlist-detail-content .playlist-detail-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    width: 100%;
+    min-height: 80px;
+    margin: 0;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, #121212 0%, #171717 45%, #121212 100%);
+    border: none;
+    box-shadow: none;
+  }
+
+  #playlist-detail-content .playlist-track-header {
+    grid-template-columns: 28px minmax(130px, 1fr) 64px;
+    gap: 8px;
+  }
+
+  #playlist-detail-content .playlist-track-row {
+    grid-template-columns: 28px minmax(0, 1fr) 64px 36px;
+    gap: 8px;
+  }
+
+  #playlist-detail-content .playlist-track-header > :nth-child(3),
+  #playlist-detail-content .playlist-track-row > :nth-child(3) {
+    display: none;
+  }
+
+  #playlist-detail-content .playlist-track-image {
+    width: 38px;
+    height: 38px;
+  }
+
+  #playlist-detail-content .playlist-empty-state {
+    padding: 18px 14px;
+  }
+
+  #playlist-detail-content .playlist-empty-state h2 {
+    font-size: 18px;
+  }
+}
+
+/* Nút Play hình tròn Spotify */
+#playlist-detail-content .playlist-play-button {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  flex: 0 0 56px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 50% !important;
+
+  background: #1ed760 !important;
+  color: #000 !important;
+
+  box-shadow: none;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+#playlist-detail-content .playlist-play-button:hover {
+  background: #3be477 !important;
+  transform: scale(1.06);
+}
+
+#playlist-detail-content .playlist-play-button svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+#playlist-detail-content .playlist-play-button:focus {
+  outline: none;
+}
+
+/* PHẦN CHỈNH SỬA THÔNG TIN PLAYLIST */
+
+/* Modal chỉnh sửa playlist kiểu Spotify */
+
+.playlist-edit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(0 0 0 / 70%);
+  backdrop-filter: blur(3px);
+}
+
+.playlist-edit-dialog {
+  width: min(100%, 660px);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 32px;
+  border-radius: 8px;
+  background: #242424;
+  color: #fff;
+  box-shadow: 0 16px 48px rgb(0 0 0 / 50%);
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.playlist-edit-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.playlist-edit-heading h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.playlist-edit-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.playlist-edit-close:hover {
+  background: #333;
+  color: #fff;
+}
+
+.playlist-edit-body {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr);
+  gap: 20px;
+}
+
+.playlist-edit-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  background: #282828;
+  color: #777;
+  cursor: pointer;
+}
+
+.playlist-edit-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playlist-edit-cover[hidden],
+.playlist-edit-image-placeholder[hidden] {
+  display: none;
+}
+
+.playlist-edit-image-placeholder {
+  position: absolute;
+  font-size: 72px;
+}
+
+.playlist-edit-image-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 55%);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.playlist-edit-image:hover .playlist-edit-image-overlay {
+  opacity: 1;
+}
+
+.playlist-edit-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.playlist-edit-name-input,
+.playlist-edit-description {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  background: #3e3e3e;
+  color: #fff;
+  font: inherit;
+}
+
+.playlist-edit-name-input {
+  height: 50px;
+  font-weight: 600;
+}
+
+.playlist-edit-description {
+  min-height: 155px;
+  resize: vertical;
+}
+
+.playlist-edit-name-input:focus,
+.playlist-edit-description:focus {
+  border-color: #fff;
+}
+
+.playlist-edit-name-input::placeholder,
+.playlist-edit-description::placeholder {
+  color: #a7a7a7;
+}
+
+.playlist-edit-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.playlist-edit-privacy {
+  padding: 10px 16px;
+  border: 1px solid #727272;
+  border-radius: 24px;
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.playlist-edit-privacy:hover {
+  border-color: #fff;
+}
+
+.playlist-edit-save {
+  min-width: 125px;
+  min-height: 60px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 32px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.playlist-edit-save:hover {
+  transform: scale(1.04);
+}
+
+.playlist-edit-note {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.playlist-edit-error {
+  margin: 10px 0 0;
+  color: #ff8a8a;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .playlist-edit-dialog {
+    padding: 22px;
+  }
+
+  .playlist-edit-body {
+    grid-template-columns: 1fr;
+  }
+
+  .playlist-edit-image {
+    width: min(100%, 220px);
+    justify-self: center;
+  }
+
+  .playlist-edit-heading h2 {
+    font-size: 23px;
+  }
+}
+
+/* nút xóa bài hát khỏi playlist */
+
+#playlist-detail-view .playlist-track-delete {
+  justify-self: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  flex: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #b3b3b3;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+}
+
+#playlist-detail-view .playlist-track-row:hover .playlist-track-delete,
+#playlist-detail-view .playlist-track-delete:focus-visible {
+  opacity: 1;
+}
+
+#playlist-detail-view .playlist-track-delete:hover {
+  color: #ff5555;
+}
+
+.playlist-track-row:hover .playlist-track-delete,
+.playlist-track-delete:focus-visible {
+  opacity: 1;
+}
+
+.playlist-track-delete:hover {
+  color: #ff5555;
+}
+
+.playlist-track-delete:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+/* ========================================
+   SPOTIFY MUSIC PLAYER
+======================================== */
+
+#spotify-player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+
+  height: 90px;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+
+  background: #000;
+  color: #fff;
+  border-top: 1px solid #282828;
+  font-family: Arial, sans-serif;
+}
+
+/* Thiết lập chung cho button */
+
+#spotify-player button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  padding: 5px;
+  border: none;
+  background: transparent;
+  color: #b3b3b3;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+#spotify-player button:hover {
+  color: #fff;
+}
+
+#spotify-player button:focus-visible {
+  outline: 2px solid #1ed760;
+  outline-offset: 3px;
+}
+
+/* ========================================
+   LEFT: ẢNH BÌA VÀ THÔNG TIN BÀI HÁT
+======================================== */
+
+#spotify-player .sp-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+#spotify-player .sp-cover {
+  display: block;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+
+  object-fit: cover;
+  border-radius: 4px;
+  background: #282828;
+}
+
+#spotify-player .sp-track-info {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+#spotify-player .sp-title,
+#spotify-player .sp-artist {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#spotify-player .sp-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#spotify-player .sp-artist {
+  margin-top: 5px;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+#spotify-player .sp-artist:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#spotify-player .sp-add {
+  margin-left: 4px;
+  font-size: 17px;
+}
+
+/* ========================================
+   CENTER: CÁC NÚT ĐIỀU KHIỂN
+======================================== */
+
+#spotify-player .sp-center {
+  width: 100%;
+  min-width: 0;
+  max-width: 680px;
+  justify-self: center;
+}
+
+#spotify-player .sp-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 8px;
+}
+
+#spotify-player .sp-controls button {
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+}
+
+#spotify-player .sp-controls .sp-shuffle,
+#spotify-player .sp-controls .sp-repeat {
+  color: #b3b3b3;
+  font-size: 15px;
+}
+
+#spotify-player .sp-controls .sp-shuffle:hover,
+#spotify-player .sp-controls .sp-repeat:hover {
+  color: #fff;
+}
+
+/* Nút Play/Pause hình tròn màu trắng */
+
+#spotify-player .sp-controls .sp-play {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  font-size: 15px;
+}
+
+#spotify-player .sp-controls .sp-play:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.07);
+}
+
+/* ========================================
+   THANH TIẾN TRÌNH VÀ THỜI GIAN
+======================================== */
+
+#spotify-player .sp-progress {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+
+  color: #b3b3b3;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+#spotify-player .sp-current-time,
+#spotify-player .sp-duration {
+  width: 34px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+#spotify-player .sp-seek {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ========================================
+   RANGE INPUT: THANH TUA VÀ ÂM LƯỢNG
+======================================== */
+
+#spotify-player input[type="range"] {
+  height: 4px;
+  margin: 0;
+  border-radius: 10px;
+  accent-color: #fff;
+  cursor: pointer;
+}
+
+#spotify-player input[type="range"]:hover {
+  accent-color: #1ed760;
+}
+
+/* ========================================
+   RIGHT: ICON TIỆN ÍCH VÀ ÂM LƯỢNG
+======================================== */
+
+#spotify-player .sp-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+}
+
+#spotify-player .sp-right button {
+  width: 28px;
+  height: 32px;
+  font-size: 15px;
+}
+
+#spotify-player .sp-right .sp-volume-icon {
+  margin-left: 2px;
+}
+
+#spotify-player .sp-volume {
+  width: 90px;
+  max-width: 100%;
+  flex-shrink: 1;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1100px) {
+  #spotify-player {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 1.2fr) auto;
+    gap: 14px;
+    padding: 0 14px;
+  }
+
+  #spotify-player .sp-right {
+    gap: 5px;
+  }
+
+  #spotify-player .sp-right button {
+    width: 24px;
+  }
+
+  #spotify-player .sp-volume {
+    width: 65px;
+  }
+}
+
+@media (max-width: 760px) {
+  #spotify-player {
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 1fr);
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  #spotify-player .sp-right {
+    display: none;
+  }
+
+  #spotify-player .sp-controls {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  #spotify-player {
+    height: 112px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
+    padding: 5px 12px;
+  }
+
+  #spotify-player .sp-left {
+    gap: 9px;
+  }
+
+  #spotify-player .sp-cover {
+    width: 40px;
+    height: 40px;
+  }
+
+  #spotify-player .sp-title {
+    font-size: 12px;
+  }
+
+  #spotify-player .sp-artist {
+    font-size: 11px;
+  }
+
+  #spotify-player .sp-center {
+    grid-row: 2;
+  }
+
+  #spotify-player .sp-controls {
+    gap: 16px;
+    margin-bottom: 3px;
+  }
+
+  #spotify-player .sp-controls button {
+    width: 25px;
+    height: 25px;
+  }
+
+  #spotify-player .sp-controls .sp-play {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Chừa chỗ cho thanh phát nhạc không che nội dung */
+
+body {
+  padding-bottom: 90px;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-bottom: 112px;
+  }
+}
+
+.app-tooltip {
+  position: fixed;
+  z-index: 11000;
+  max-width: calc(100vw - 16px);
+  padding: 8px 10px;
+  border: 1px solid #3e3e3e;
+  border-radius: 4px;
+  background: #282828;
+  color: #ffffff;
+  box-shadow: 0 4px 12px #0008;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+}
+
+.app-tooltip[hidden] {
+  display: none;
+}
+
+.app-tooltip-below {
+  transform: translateX(-50%);
+}
